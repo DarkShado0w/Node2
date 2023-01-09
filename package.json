@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": " Beginner node",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "echo test"
@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/DarkShado0w/Node2#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3",
+    "process": "^0.11.10"
   }
 }
