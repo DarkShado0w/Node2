@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/DarkShado0w/Node2/issues"
   },
-  "homepage": "https://github.com/DarkShado0w/Node2#readme"
+  "homepage": "https://github.com/DarkShado0w/Node2#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
