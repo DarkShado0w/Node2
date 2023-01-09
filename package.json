@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": " Beginner node",
   "main": "index.js",
+  "type":"module",
   "scripts": {
     "start": "node index.js",
     "test": "echo test"
