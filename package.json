@@ -1,9 +1,10 @@
 {
   "name": "node2",
   "version": "1.0.0",
-  "description": "",
+  "description": " Beginner node",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo test"
   },
   "repository": {
