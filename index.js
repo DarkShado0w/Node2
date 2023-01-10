@@ -70,6 +70,23 @@ app.get("/api/users/:id", (req, res) => {
     });
     console.log(err)});
 });
+app.delete("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+    User.findOneAndDelete({_id:id})
+    .then((response) => {
+    res.send({
+        message: "user deleted",
+        user: response,
+    });
+    console.log(response);
+})
+.catch((err) => {
+    res.send({
+        message: "Errors getting users",
+        users: JSON.stringify(err),
+    });
+    console.log(err)});
+});
 app.post("/test", (req, res) => {
     console.log("\n>>>>>>\n", req, "\n>>>>>>>\n");
   res.send(req.body);
@@ -78,31 +95,32 @@ app.post("/test", (req, res) => {
 app.put("/api/users", (req, res) => {
     const{ fullName,email,password, ...rest } = req.body;
     // console.log("\n>>>>>>\n", req, "\n>>>>>>>\n");
-  User.findOneAndUpdate( {email},{
+  User.findOneAndUpdate( { email },{
    fullName,
    email,
    password,
-  }).then(response => console.log(response))
-    .catch(err => console.log(err));
-    res.send({message:"User Created!"});
+  }).then(response => {console.log(response)
+    res.send({message:"User Updated!"});
+  })
+    .catch((err )=> {console.log(err)});
+    res.send({message:"Error Updating!"});
+    
 });
-
+app.post("/api/auth/login", (req, res) => {
+    const { email, password} = req.body;
+    User.findOne({ email }).then(response => {
+       if(response.password === password)
+       {
+        res.send({message: "User authenticated!" });
+       }
+       else
+       { res.send({message:"Wrong password"});}
+      
+    }).catch(err => {
+        res.send({
+        message: "Invalid Email, no user found"
+        });
+    })
+});
 app.listen(process.env.PORT, console.log(`Express app serverd at 3005:${process.env.PORT}`));
 // console.log("Hello Mern!");
-// app.post("api/auth/login",(req,res) =>{
-//     const{email, password} = req.body;
-//     User.findOne({email}).then(response => {
-//        if(response.password = password){
-//         res.send({message:"User authenticated!"});
-
-//        }
-//        else
-//        { res.send({message:"Wrong password"});}
-      
-//     }).catch(err => {
-//         res.send({
-
-//         })
-//     }
-//         )
-// })
