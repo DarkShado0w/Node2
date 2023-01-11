@@ -2,7 +2,7 @@ import express, { response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import User from "./models/users.js";
-import { authUser, createUser, deleteUser, listUser, updateUser } from "./models/controllers/usersController.js";
+import { authUser, createUser, deleteUser, getUserById, listUser, updateUser } from "./models/controllers/usersController.js";
 
 dotenv.config();
 const app = express();
@@ -30,23 +30,7 @@ app.get("/", (req, res) => {
 app.post("/api/users", createUser);
 
 app.get("/api/users", listUser);
-app.get("/api/users/:id", (req, res) => {
-  const { id } = req.params;
-    User.findById({})
-    .then((response) => {
-    res.send({
-        message: "user retrieved",
-        user: response,
-    });
-    console.log(response);
-})
-.catch((err) => {
-    res.send({
-        message: "Errors getting users",
-        users: JSON.stringify(err),
-    });
-    console.log(err)});
-});
+app.get("/api/users/:id", getUserById);
 app.delete("/api/users/:id", deleteUser);
 app.post("/test", (req, res) => {
     console.log("\n>>>>>>\n", req, "\n>>>>>>>\n");

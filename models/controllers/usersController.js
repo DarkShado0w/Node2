@@ -64,8 +64,7 @@ export const updateUser = asynchandler(
         res.send({message:"User Updated!"});
       })
         .catch((err )=> {console.log(err)});
-        res.send({message:"Error Updating!"});
-        
+        res.send({message:"Error Updating!"});   
     }
 );
 export const deleteUser = asynchandler(
