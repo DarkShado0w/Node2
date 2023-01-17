@@ -1,4 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
+import { reset } from "nodemon";
 import Product from "../models/products.js";
 
 //createProduct
@@ -29,6 +30,8 @@ export const listProduct = expressAsyncHandler(async (req, res) => {
   //       message: `error occured while listing products. ERROR: ${error}`,
   //     });
   //   });
+  // const products = Product.find({});
+  // res.send({message:'Products Listed!',products});
   try {
     const products = await Product.find({});
     res.send({ message: "Products Listed!", products });
