@@ -1,15 +1,10 @@
 import expressAsyncHandler from "express-async-handler";
-import { reset } from "nodemon";
 import Product from "../models/products.js";
 
 //createProduct
 export const createProduct = expressAsyncHandler((req, res) => {
   const { productName, productPrice, productBrand } = req.body;
-  Product.create({
-    productName,
-    productPrice,
-    productBrand,
-  })
+  Product.create(req.body)
     .then((response) => {
       res.send({ message: "product created", product: response });
     })
