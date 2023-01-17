@@ -1,6 +1,6 @@
-import asynchandler from "express-async-handler";
-import User from "../users.js";
-export const createUser = asynchandler((req, res) => {
+import asyncHandler from "express-async-handler";
+import User from "../models/users.js";
+export const createUser = asyncHandler((req, res) => {
     const{ fullName,email,password, ...rest } = req.body;
   User.create({
    fullName,
@@ -15,7 +15,7 @@ export const createUser = asynchandler((req, res) => {
       res.send({message:"Error user created"});
   });
 });
-export const listUser = asynchandler(
+export const listUser = asyncHandler(
     (req, res) => {
         User.find({
     }).then((response) => {
@@ -33,7 +33,7 @@ export const listUser = asynchandler(
           console.log(err)});
       }
 );
-export const getUserById = asynchandler(
+export const getUserById = asyncHandler(
     (req, res) => {
         const { id } = req.params;
           User.findById({})
@@ -52,7 +52,7 @@ export const getUserById = asynchandler(
           console.log(err)});
       }
 );
-export const updateUser = asynchandler(
+export const updateUser = asyncHandler(
     (req, res) => {
         const{ fullName,email,password, ...rest } = req.body;
         // console.log("\n>>>>>>\n", req, "\n>>>>>>>\n");
@@ -67,7 +67,7 @@ export const updateUser = asynchandler(
         res.send({message:"Error Updating!"});   
     }
 );
-export const deleteUser = asynchandler(
+export const deleteUser = asyncHandler(
     (req, res) => {
         const { id } = req.params;
           User.findOneAndDelete({_id:id})
@@ -86,7 +86,7 @@ export const deleteUser = asynchandler(
           console.log(err)});
       }
 );
-export const authUser = asynchandler(
+export const authUser = asyncHandler(
     (req, res) => {
         const { email, password} = req.body;
         User.findOne({ email }).then(response => {
@@ -104,3 +104,22 @@ export const authUser = asynchandler(
         })
     }
 );
+export const findUser = asyncHandler((req, res) => {
+    const { id } = req.params;
+    User.findById(id)
+      .then((response) => {
+        res.send({
+          message: "User retrieved!",
+          user: response,
+        });
+        console.log(response);
+      })
+      .catch((err) => {
+        res.send({
+          message: "Error getting user!",
+          users: JSON.stringify(err),
+        });
+        console.log(err);
+      });
+  });
+  
