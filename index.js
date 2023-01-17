@@ -30,21 +30,21 @@ app.get("/", (req, res) => {
   status: "fine", 
 });
 });
-app.post("/api/users", createUser);
-app.get("/api/users", listUser);
-app.delete("/api/users/:id", deleteUser);
+//app.post("/api/users", createUser);
+//app.get("/api/users", listUser);
+//app.delete("/api/users/:id", deleteUser);
 app.post("/test", (req, res) => {
     console.log("\n>>>>>>\n", req, "\n>>>>>>>\n");
   res.send(req.body);
 });
-app.put("/api/users", updateUser);
-app.post("/api/auth/login", authUser);
+//app.put("/api/users", updateUser);
+//app.post("/api/auth/login", authUser);
 
 // console.log("Hello Mern!");
 app.use("/api/users",usersRouter);
 
 app.use("/api/products",productsRouter);
-app.get("/api/users/:id",findUser);
+//app.get("/api/users/:id",findUser);
 app.listen(process.env.PORT, console.log(`Server is listening at port:${process.env.PORT}`));
 
 app.post("/api/auth/login",authUser);
